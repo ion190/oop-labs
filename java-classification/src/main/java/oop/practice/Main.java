@@ -14,9 +14,18 @@ public class Main {
       System.out.println("Planet: " + individual.getPlanet());
       System.out.println("Age: " + individual.getAge());
       System.out.println("Traits: " + (individual.getTraits() != null ? String.join(", ", individual.getTraits()) : "No traits available"));
-      System.out.println("Classified Universe: " + universe);
+
+      if (universe != Universe.Unknown) {
+        System.out.println("Classified Universe: " + universe);
+      } else {
+        System.out.println("Classified Universe: No classification available");
+      }
       System.out.println();
     }
+
+    View view = new View();
+    view.writeToJsonFiles(individuals);
+
   }
 }
 

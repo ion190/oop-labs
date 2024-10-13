@@ -10,6 +10,7 @@ public class Individual {
     private String planet;
     private int age;
     private List<String> traits;
+    private String classifiedUniverse;
 
     public Individual() {
     }
@@ -34,6 +35,10 @@ public class Individual {
         return traits;
     }
 
+    public String getClassifiedUniverse() {
+        return classifiedUniverse;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -52,5 +57,9 @@ public class Individual {
 
     public void setTraits(List<String> traits) {
         this.traits = traits;
+    }
+
+    public void setClassifiedUniverse(String classifiedUniverse) { // Add this setter
+        this.classifiedUniverse = classifiedUniverse;
     }
 }
