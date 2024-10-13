@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab4235c5-c02c-4891-8ebc-653e54a16562" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/java-classification/src/main/java/oop/practice/Individual.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/java-classification/target/classes/oop/practice/Individual.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-classification/src/main/java/oop/practice/ClassifyIntoUniverse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-classification/src/main/java/oop/practice/Universe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java-classification/src/main/java/oop/practice/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-classification/src/main/java/oop/practice/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-classification/src/main/java/oop/practice/ReaderJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-classification/src/main/java/oop/practice/ReaderJSON.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java-classification/target/classes/oop/practice/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-classification/target/classes/oop/practice/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-classification/target/classes/oop/practice/ReaderJSON.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-classification/target/classes/oop/practice/ReaderJSON.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-classification/target/classes/test-input.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +41,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -138,7 +135,7 @@
       <option name="presentableId" value="Default" />
       <updated>1728818436788</updated>
       <workItem from="1728818438268" duration="2410000" />
-      <workItem from="1728833629987" duration="7509000" />
+      <workItem from="1728833629987" duration="8762000" />
     </task>
     <servers />
   </component>

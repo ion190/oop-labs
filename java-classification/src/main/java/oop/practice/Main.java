@@ -8,18 +8,13 @@ public class Main {
     List<Individual> individuals = reader.getIndividuals("java-classification/src/main/resources/input.json");
 
     for (Individual individual : individuals) {
+      Universe universe = ClassifyIntoUniverse.check(individual);
       System.out.println("ID: " + individual.getId());
       System.out.println("Is Humanoid: " + individual.isHumanoid());
       System.out.println("Planet: " + individual.getPlanet());
       System.out.println("Age: " + individual.getAge());
-
-      List<String> traits = individual.getTraits();
-      if (traits != null) {
-        System.out.println("Traits: " + String.join(", ", traits));
-      } else {
-        System.out.println("Traits: No traits available");
-      }
-
+      System.out.println("Traits: " + (individual.getTraits() != null ? String.join(", ", individual.getTraits()) : "No traits available"));
+      System.out.println("Classified Universe: " + universe);
       System.out.println();
     }
   }
