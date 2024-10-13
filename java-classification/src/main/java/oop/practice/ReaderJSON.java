@@ -5,25 +5,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReaderJSON {
-    public void printJSON(String path) {
-        // Create an instance of ObjectMapper
+    public List<Individual> getIndividuals(String path) {
         ObjectMapper mapper = new ObjectMapper();
+        List<Individual> individualsList = new ArrayList<>();
 
         try {
-            // Specify the path to the JSON file
             File inputFile = new File(path);
-
-            // Read the JSON file and parse it into a JsonNode
             JsonNode jsonData = mapper.readTree(inputFile);
 
-            // Print the entire JSON data to the console
-            System.out.println(jsonData.toPrettyString());
-
+            for (JsonNode node : jsonData.get("data")) {
+                Individual individual = mapper.treeToValue(node, Individual.class);
+                individualsList.add(individual);
+            }
         } catch (IOException e) {
-            // Handle any errors that might occur while reading the file
-            System.err.println("An error occurred while reading the JSON file: " + e.getMessage());
+            System.err.println("An error occurred. File not found or no 'data' key found within the file: " + e.getMessage());
         }
+        return individualsList;
     }
 }

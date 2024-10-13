@@ -1,19 +1,27 @@
 package oop.practice;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.io.IOException;
-
+import java.util.List;
 
 public class Main {
   public static void main(String[] args) {
-    System.out.println("Current Working Directory: " + System.getProperty("user.dir"));
-
     ReaderJSON reader = new ReaderJSON();
-    reader.printJSON("src/main/resources/input.json");
+    List<Individual> individuals = reader.getIndividuals("java-classification/src/main/resources/input.json");
 
+    for (Individual individual : individuals) {
+      System.out.println("ID: " + individual.getId());
+      System.out.println("Is Humanoid: " + individual.isHumanoid());
+      System.out.println("Planet: " + individual.getPlanet());
+      System.out.println("Age: " + individual.getAge());
+
+      List<String> traits = individual.getTraits();
+      if (traits != null) {
+        System.out.println("Traits: " + String.join(", ", traits));
+      } else {
+        System.out.println("Traits: No traits available");
+      }
+
+      System.out.println();
+    }
   }
 }
 
