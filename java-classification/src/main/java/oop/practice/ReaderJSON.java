@@ -18,7 +18,44 @@ public class ReaderJSON {
             JsonNode jsonData = mapper.readTree(inputFile);
 
             for (JsonNode node : jsonData.get("data")) {
-                Individual individual = mapper.treeToValue(node, Individual.class);
+                Individual individual = new Individual();
+
+                // add id to individual
+                individual.setId(node.get("id").asInt());
+
+                // add humanoid to individual
+                if (!node.has("isHumanoid") || node.get("isHumanoid").isNull()) {
+                    individual.setHumanoid(null);
+                } else {
+                    individual.setHumanoid(node.get("isHumanoid").asBoolean());
+                }
+
+                // add planet to individual
+                if (!node.has("planet") || node.get("planet").isNull()) {
+                    individual.setPlanet(null);
+                } else {
+                    individual.setPlanet(node.get("planet").asText());
+                }
+
+                // add age to individual
+                if (!node.has("age") || node.get("age").isNull()) {
+                    individual.setAge(null);
+                } else {
+                    individual.setAge(node.get("age").asInt());
+                }
+
+                // add traits to individual
+                if (!node.has("traits") || node.get("traits").isNull()) {
+                    individual.setTraits(null);
+                } else {
+                    List<String> traits = new ArrayList<>();
+                    for (JsonNode traitNode : node.get("traits")) {
+                        traits.add(traitNode.asText());
+                    }
+                    individual.setTraits(traits);
+                }
+
+                // add individual to the list
                 individualsList.add(individual);
             }
         } catch (IOException e) {
