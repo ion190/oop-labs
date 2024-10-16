@@ -1,7 +1,9 @@
 package oop.practice;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class View {
@@ -13,16 +15,26 @@ public class View {
     }
 
     public void writeToJsonFiles(List<Individual> individuals) {
+        File outputDir = new File("output");
+
+        List<Individual> starWarsIndividuals = new ArrayList<>();
+        List<Individual> hitchhikerIndividuals = new ArrayList<>();
+        List<Individual> marvelIndividuals = new ArrayList<>();
+        List<Individual> lordOfTheRingsIndividuals = new ArrayList<>();
+
+        for (Individual individual : individuals) {
+            if (individual.getClassifiedUniverse().equals("Star Wars")) {
+                starWarsIndividuals.add(individual);
+            } else if (individual.getClassifiedUniverse().equals("Hitchhiker")) {
+                hitchhikerIndividuals.add(individual);
+            } else if (individual.getClassifiedUniverse().equals("Marvel")) {
+                marvelIndividuals.add(individual);
+            } else if (individual.getClassifiedUniverse().equals("Lord of the rings")) {
+                lordOfTheRingsIndividuals.add(individual);
+            }
+        }
+
         try {
-            File outputDir = new File("output");
-
-            List<Individual> starWarsIndividuals = individuals.stream().filter(ind -> Universe.StarWars.equals(ClassifyIntoUniverse.check(ind))).toList();
-
-            List<Individual> hitchhikerIndividuals = individuals.stream().filter(ind -> Universe.Hitchhiker.equals(ClassifyIntoUniverse.check(ind))).toList();
-
-            List<Individual> marvelIndividuals = individuals.stream().filter(ind -> Universe.Marvel.equals(ClassifyIntoUniverse.check(ind))).toList();
-
-            List<Individual> lordOfTheRingsIndividuals = individuals.stream().filter(ind -> Universe.LordOfTheRings.equals(ClassifyIntoUniverse.check(ind))).toList();
 
             objectMapper.writeValue(new File(outputDir, "star_wars_individuals.json"), starWarsIndividuals);
             objectMapper.writeValue(new File(outputDir, "hitchhiker_individuals.json"), hitchhikerIndividuals);

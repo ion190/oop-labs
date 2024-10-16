@@ -4,56 +4,82 @@ import java.util.List;
 
 public class ClassifyIntoUniverse {
 
-    public static Universe check(Individual individual) {
-        if ((!individual.isHumanoid() && "Kashyyyk".equals(individual.getPlanet()) && individual.getAge() >= 0 && individual.getAge() <= 400 && individual.getTraits() != null && individual.getTraits().containsAll(List.of("HAIRY", "TALL"))) || (!individual.isHumanoid() && "Endor".equals(individual.getPlanet()) && individual.getAge() >= 0 && individual.getAge() <= 60 && individual.getTraits() != null && individual.getTraits().containsAll(List.of("SHORT", "HAIRY")))) {
-            return Universe.StarWars;
-        }
+    public static String check(Individual individual) {
+        String planet = individual.getPlanet();
+        Boolean humanoid = individual.isHumanoid();
+        Integer age = individual.getAge();
+        List<String> traits = individual.getTraits();
 
-        if (individual.isHumanoid() && "Asgard".equals(individual.getPlanet()) && individual.getAge() >= 0 && individual.getAge() <= 5000 && individual.getTraits() != null && individual.getTraits().containsAll(List.of("BLONDE", "TALL"))) {
-            return Universe.Marvel;
-        }
-
-        if ((individual.isHumanoid() && "Betelgeuse".equalsIgnoreCase(individual.getPlanet()) && individual.getAge() >= 0 && individual.getAge() <= 100 && individual.getTraits() != null && individual.getTraits().containsAll(List.of("EXTRA_ARMS", "EXTRA_HEAD"))) || (!individual.isHumanoid() && "Vogsphere".equalsIgnoreCase(individual.getPlanet()) && individual.getAge() >= 0 && individual.getAge() <= 200 && individual.getTraits() != null && individual.getTraits().containsAll(List.of("GREEN", "BULKY")))) {
-            return Universe.Hitchhiker;
-        }
-
-        if ((individual.isHumanoid() && "Earth".equalsIgnoreCase(individual.getPlanet()) && individual.getAge() == 0 && individual.getTraits() != null && individual.getTraits().containsAll(List.of("BLONDE", "POINTY_EARS"))) || (individual.isHumanoid() && "Earth".equalsIgnoreCase(individual.getPlanet()) && individual.getAge() >= 0 && individual.getAge() <= 200 && individual.getTraits() != null && individual.getTraits().containsAll(List.of("SHORT", "BULKY")))) {
-            return Universe.LordOfTheRings; // Elf
-        }
-
-        // guessing when having insufficient information
-        // check humanoid and planet
-        if (individual.getPlanet() != null) {
-            if (("Kashyyyk".equals(individual.getPlanet())) || ("Endor".equals(individual.getPlanet()))) {
-                return Universe.StarWars;
-            }
-            if ("Asgard".equals(individual.getPlanet())) {
-                return Universe.Marvel;
-            }
-            if ("Betelgeuse".equalsIgnoreCase(individual.getPlanet())) {
-                return Universe.Hitchhiker;
-            }
-            if ("Earth".equalsIgnoreCase(individual.getPlanet())) {
-                return Universe.LordOfTheRings;
+        // if has planet
+        if (planet != null) {
+            if (individual.getPlanet().equals("Kashyyyk") || individual.getPlanet().equals("Endor")) {
+                return "Star Wars";
+            } else if (individual.getPlanet().equals("Asgard")) {
+                return "Marvel";
+            } else if (individual.getPlanet().equals("Betelgeuse") || individual.getPlanet().equals("Vogsphere")) {
+                return "Hitchhiker";
+            } else if (individual.getPlanet().equals("Earth")) {
+                return "Lord of the rings";
+            } else {
+                return "Unknown planet";
             }
         }
 
-        // check traits
-        if (individual.getTraits() != null) {
-            if (individual.getTraits().contains("HAIRY") || individual.getTraits().contains("TALL")) {
-                return Universe.StarWars;
-            }
-            if (individual.getTraits().contains("BLONDE")) {
-                return Universe.Marvel;
-            }
-            if (individual.getTraits().contains("EXTRA_ARMS") || individual.getTraits().contains("EXTRA_HEAD")) {
-                return Universe.Hitchhiker;
-            }
-            if (individual.getTraits().contains("SHORT") || individual.getTraits().contains("BULKY")) {
-                return Universe.LordOfTheRings;
+        // if has humanoid value
+        if (humanoid != null) {
+            // if not human
+            if (!humanoid) {
+                // if has traits
+                if (traits != null) {
+                    if (traits.contains("GREEN") || traits.contains("BULKY")) {
+                        return "Hitchhiker";
+                    } else if (traits.contains("HAIRY")) {
+                        return "Star Wars";
+                    }
+                }
+                // if has age value
+                if (age != null) {
+                    if (age > 200) {
+                        return "Star Wars";
+                    }
+                }
+                // if human
+            } else {
+                // if has traits value
+                if (traits != null) {
+                    if (traits.contains("TALL")) {
+                        return "Marvel";
+                    } else if (traits.contains("EXTRA_ARMS") || traits.contains("EXTRA_HEAD")) {
+                        return "Hitchhiker";
+                    } else if (traits.contains("SHORT") || traits.contains("BLONDE") || traits.contains("BULKY")) {
+                        return "Lord of the rings";
+                    }
+                }
+                // if has age value
+                if (age != null) {
+                    if (age > 200 && age < 5000) {
+                        return "Marvel";
+                    } else if (age > 5000) {
+                        return "Lord of the rings";
+                    }
+                }
+
             }
         }
 
-        return Universe.Unknown;
+        // if has traits
+        if (traits != null) {
+            if (traits.contains("EXTRA_ARMS") || traits.contains("EXTRA_HEAD") || traits.contains("GREEN")) {
+                return "Hitchhiker";
+            } else if (traits.contains("POINTY_EARS") || (traits.contains("SHORT") && traits.contains("BULKY"))) {
+                return "Lord of the rings";
+            } else if (traits.contains("BLONDE") && traits.contains("TALL")) {
+                return "Marvel";
+            } else if (traits.contains("HAIRY")) {
+                return "Star wars";
+            }
+        }
+
+        return "Unknown";
     }
 }
